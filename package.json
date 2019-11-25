@@ -1,0 +1,18 @@
+{
+  "name": "kfCert",
+  "version": "1.0.0",
+  "description": "自签证书工具。功能：1. 自定义根证书。 2. 通过自定义证书生成域名证书",
+  "main": "index.js",
+  "author": "kuanGFinn",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mkdirp": "^0.5.1",
+    "node-forge": "^0.9.1"
+  },
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "pm": "pm2 start index.js"
+  }
+}

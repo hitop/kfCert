@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>kfCert - 自签证书工具</title>
+  <style type="text/css">
+    #app{
+      text-align: center;
+      background: #918;
+      color: white;
+      padding: 1em;
+      border-radius: 8px
+    }
+    .domain_input{
+      font-size: 26px;
+      border: none;
+      height: 40px;
+      border-radius: 8px;
+      padding-left: 12px;
+    }
+    .domain_button{
+      height: 40px;
+      padding: 8px 22px;
+      border: none;
+      border-radius: 8px;
+      width: 220px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+<div id="app">
+  <h3 class="domain"><label>Domain：<input id="domain" class="domain_input"></label></h3>
+  <p><button onclick="domainCrt()" class="domain_button">生成</button></p>
+</div>
+
+<script type="text/javascript">
+  function domainCrt(){
+    let domain = document.getElementById('domain')
+    if (domain.value) {
+      fetch("/crt?domain="+domain.value).then(res=>res.text().then(data=>alert(data))).catch(e=>console.error(e))
+    } else {
+      alert("空值")
+    }
+  }
+</script>
+</body>
+</html>
