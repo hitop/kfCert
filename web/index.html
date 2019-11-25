@@ -27,22 +27,44 @@
       font-size: 20px;
       cursor: pointer;
     }
+    .waitdot:after {
+      content: " • ";
+      animation: waitdot 4.2s ease-in-out infinite;
+      transform-origin: 50% 50%;
+      display: inline-block;
+      position: absolute;
+    }
+
+    @keyframes waitdot {
+      0% { transform:translate(0,0) }
+      16.66667% { transform:translate(15px,0) }
+      33.33333% { transform:translate(0,0) }
+      50% { transform:translate(15px,0) }
+      66.66667% { transform:translate(0,0) }
+      83.33333% { transform:translate(15px,0) }
+      100% { transform:translate(0,0) }
+    }
   </style>
 </head>
 
 <body>
 <div id="app">
   <h3 class="domain"><label>Domain：<input id="domain" class="domain_input"></label></h3>
-  <p><button onclick="domainCrt()" class="domain_button">生成</button></p>
+  <p><button onclick="domainCrt(this)" class="domain_button">生成</button></p>
 </div>
 
 <script type="text/javascript">
-  function domainCrt(){
+  function domainCrt(e){
+    e.classList.add("waitdot")
     let domain = document.getElementById('domain')
     if (domain.value) {
-      fetch("/crt?domain="+domain.value).then(res=>res.text().then(data=>alert(data))).catch(e=>console.error(e))
+      fetch("/crt?domain="+domain.value).then(res=>res.text().then(data=>{
+        e.classList.remove("waitdot")
+        alert(data)
+      })).catch(e=>console.error(e))
     } else {
       alert("空值")
+      e.classList.remove("waitdot")
     }
   }
 </script>
