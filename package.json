@@ -6,7 +6,7 @@
   "author": "kuanGFinn",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mkdirp": "^0.5.1",
     "node-forge": "^0.9.1"
   },
